@@ -3,112 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>rootnode_01</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
---blue:#00bfff;
---bg:#040608;
---card:#0d1117;
---text:#c9d1d9;
+--neon:#d300ff;
+--blue:#00e1ff;
+--bg:#050505;
 }
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
+scroll-behavior:smooth;
+cursor:none;
 }
 
 body{
 background:var(--bg);
 color:white;
+font-family:'Space Grotesk',sans-serif;
+overflow-x:hidden;
 }
 
-/* NAV */
-.nav{
+/* 🖱️ CURSOR */
+.cursor{
+width:18px;
+height:18px;
+border-radius:50%;
+position:fixed;
+background:var(--neon);
+pointer-events:none;
+mix-blend-mode:screen;
+z-index:9999;
+box-shadow:0 0 20px var(--neon);
+}
+
+/* 🎵 PROGRESS */
+#music-progress{
 position:fixed;
 top:0;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:20px 40px;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(10px);
+left:0;
+height:2px;
+width:0%;
+background:linear-gradient(90deg,var(--blue),var(--neon));
 z-index:999;
 }
 
-.logo{
-color:var(--blue);
-font-weight:800;
-}
-
-.menu-btn{
-font-size:24px;
-cursor:pointer;
-}
-
-/* MENU */
-.menu{
+/* 🌌 FONDO */
+canvas{
 position:fixed;
-right:-100%;
 top:0;
-width:260px;
-height:100%;
-background:#070b10;
-padding:40px;
-transition:0.4s;
-}
-
-.menu.active{
-right:0;
-}
-
-.menu a{
-display:block;
-margin:20px 0;
-color:#ccc;
-text-decoration:none;
+left:0;
+z-index:-1;
 }
 
 /* HERO */
 .hero{
 height:100vh;
 background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.95)),
 url('42010.jpg');
 background-size:cover;
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
+flex-direction:column;
 text-align:center;
 }
 
 .hero h1{
-font-size:4.5rem;
-color:var(--blue);
-font-weight:800;
+font-size:5rem;
+letter-spacing:10px;
+text-shadow:0 0 40px var(--neon);
 }
 
 .hero p{
-color:#aaa;
 margin-top:10px;
-}
-
-/* DISCORD CARD */
-.discord{
-margin-top:40px;
-background:var(--card);
-padding:20px;
-border-radius:15px;
-width:320px;
-}
-
-.discord strong{
-color:white;
+color:#aaa;
+letter-spacing:4px;
 }
 
 /* SECTIONS */
@@ -120,8 +97,18 @@ margin:auto;
 
 h2{
 text-align:center;
-margin-bottom:60px;
-font-weight:800;
+letter-spacing:6px;
+color:#888;
+margin-bottom:80px;
+}
+
+/* 🧊 GLASS */
+.glass{
+background:rgba(255,255,255,0.04);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.05);
+border-radius:25px;
+padding:40px;
 }
 
 /* GRID */
@@ -133,141 +120,221 @@ gap:30px;
 
 /* CARD */
 .card{
-background:var(--card);
-padding:30px;
-border-radius:15px;
+transition:0.4s;
 }
 
-.card strong{
-color:white;
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 30px #00e1ff40;
 }
 
-/* PRECIOS */
-.price{
-text-align:center;
-font-size:2rem;
-color:var(--blue);
-margin:10px 0;
+.card h3{
+font-family:'JetBrains Mono', monospace;
+margin-bottom:15px;
+}
+
+.card p{
+color:#777;
+}
+
+/* 🎮 PROYECTOS */
+.project img{
+width:100%;
+border-radius:20px;
+transition:0.4s;
+}
+
+.project img:hover{
+transform:scale(1.05);
+box-shadow:0 0 30px var(--neon);
+}
+
+/* 🔘 BOTONES */
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 30px;
+border:1px solid var(--neon);
+border-radius:10px;
+color:var(--neon);
+text-decoration:none;
+transition:0.3s;
+}
+
+.btn:hover{
+background:var(--neon);
+color:black;
+box-shadow:0 0 20px var(--neon);
+}
+
+/* 🎧 PLAYER */
+.player{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#0a0a0a;
+padding:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:0.9rem;
+}
+
+.player span{
+color:#ccc;
+}
+
+/* reveal */
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:1s;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
 }
 
 footer{
 text-align:center;
 padding:80px;
-color:#444;
+color:#333;
 }
+
 </style>
 </head>
 
 <body>
 
+<div class="cursor"></div>
+<div id="music-progress"></div>
+
+<canvas id="bg"></canvas>
+
 <audio id="audio" loop>
 <source src="Súbete y Ya Verás(MP3_160K).mp3">
 </audio>
 
-<div class="nav">
-<div class="logo">rootnode_01</div>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-</div>
-
-<div class="menu" id="menu">
-<a href="#about">Sobre mí</a>
-<a href="#services">Servicios</a>
-<a href="#projects">Proyectos</a>
-<a href="#pricing">Precios</a>
-<a href="#contact">Contacto</a>
-</div>
-
+<!-- HERO -->
 <div class="hero">
 <h1>rootnode_01</h1>
-<p><strong>Desarrollador Web</strong> | Java | Minecraft</p>
-
-<div class="discord">
-<strong>rootnode_01</strong><br>
-<span style="color:#888;">I'm not currently doing anything!</span>
-</div>
+<p>future // developer</p>
 </div>
 
-<section id="about">
-<h2>Sobre mí</h2>
-<p style="text-align:center; max-width:700px; margin:auto; color:#aaa;">
-Soy <strong>desarrollador especializado</strong> en sistemas de servidores Minecraft, bots de Discord y gestión de infraestructura VPS. Me enfoco en crear soluciones <strong>eficientes, escalables y profesionales</strong>.
-</p>
+<!-- STACK -->
+<section class="reveal">
+<h2>// stack</h2>
+
+<div class="glass grid">
+
+<div class="card">
+<h3>01 / minecraft</h3>
+<p>Optimización TPS y redes velocity.</p>
+</div>
+
+<div class="card">
+<h3>02 / discord</h3>
+<p>Bots avanzados y automatización.</p>
+</div>
+
+<div class="card">
+<h3>03 / vps</h3>
+<p>Infraestructura Linux.</p>
+</div>
+
+</div>
 </section>
 
-<section id="services">
-<h2>Servicios</h2>
+<!-- PROYECTOS -->
+<section class="reveal">
+<h2>// proyectos</h2>
+
 <div class="grid">
 
-<div class="card">
-<h3>Minecraft</h3>
-<p><strong>Optimización TPS</strong>, configuración avanzada y redes Velocity.</p>
+<div class="project">
+<img src="42010.jpg">
 </div>
 
-<div class="card">
-<h3>Discord</h3>
-<p><strong>Bots personalizados</strong>, tickets, economía y automatización.</p>
-</div>
-
-<div class="card">
-<h3>VPS</h3>
-<p><strong>Servidores Linux</strong>, bases de datos y mantenimiento.</p>
+<div class="project">
+<img src="42010.jpg">
 </div>
 
 </div>
 </section>
 
-<section id="projects">
-<h2>Proyectos</h2>
-<div class="grid">
-
-<div class="card">
-<h3>LuxCraft</h3>
-<p>Red Minecraft optimizada con alto rendimiento.</p>
-</div>
-
-<div class="card">
-<h3>Bot Tickets</h3>
-<p>Sistema automatizado para soporte en Discord.</p>
-</div>
-
+<!-- CONTACTO -->
+<section class="reveal">
+<h2>// contacto</h2>
+<div style="text-align:center;">
+<a href="#" class="btn">Discord</a>
+<a href="#" class="btn">GitHub</a>
 </div>
 </section>
 
-<section id="pricing">
-<h2>Precios</h2>
-<div class="grid">
+<footer>// © 2026 // rootnode_01 //</footer>
 
-<div class="card">
-<h3>Básico</h3>
-<div class="price">$10</div>
-<p>Configuraciones simples.</p>
+<!-- PLAYER -->
+<div class="player">
+<span>Súbete y Ya Verás</span>
+<span>▶</span>
 </div>
-
-<div class="card">
-<h3>Pro</h3>
-<div class="price">$25</div>
-<p>Automatización completa.</p>
-</div>
-
-</div>
-</section>
-
-<section id="contact">
-<h2>Contacto</h2>
-<p style="text-align:center; color:#aaa;">
-Discord: <strong>rootnode_01</strong>
-</p>
-</section>
-
-<footer>// rootnode_01 © 2026</footer>
 
 <script>
+// 🎵 audio
 let audio=document.getElementById("audio");
+let bar=document.getElementById("music-progress");
+
 document.body.onclick=()=>{if(audio.paused)audio.play();}
 
-function toggleMenu(){
-document.getElementById("menu").classList.toggle("active");
+audio.ontimeupdate=()=>{
+bar.style.width=(audio.currentTime/audio.duration)*100+"%";
 }
+
+// 🖱️ cursor
+let cursor=document.querySelector(".cursor");
+document.addEventListener("mousemove",e=>{
+cursor.style.top=e.clientY+"px";
+cursor.style.left=e.clientX+"px";
+});
+
+// 🌌 partículas
+let canvas=document.getElementById("bg");
+let ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<100;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#00e1ff";
+ctx.fill();
+});
+requestAnimationFrame(draw);
+}
+draw();
+
+// scroll reveal
+function reveal(){
+document.querySelectorAll(".reveal").forEach(el=>{
+if(el.getBoundingClientRect().top < window.innerHeight-100){
+el.classList.add("active");
+}
+});
+}
+window.addEventListener("scroll",reveal);
 </script>
 
 </body>
