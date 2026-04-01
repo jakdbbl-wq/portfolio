@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>rootnode_01</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -15,13 +14,7 @@
 --bg:#050505;
 }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-cursor:none;
-}
+*{margin:0;padding:0;box-sizing:border-box;cursor:none;}
 
 body{
 background:var(--bg);
@@ -30,34 +23,40 @@ font-family:'Space Grotesk',sans-serif;
 overflow-x:hidden;
 }
 
+/* 🧠 LOADER */
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+font-family:'JetBrains Mono';
+color:var(--blue);
+font-size:1.2rem;
+}
+
 /* 🖱️ CURSOR */
 .cursor{
-width:18px;
-height:18px;
-border-radius:50%;
-position:fixed;
-background:var(--neon);
-pointer-events:none;
-mix-blend-mode:screen;
-z-index:9999;
+width:18px;height:18px;border-radius:50%;
+position:fixed;background:var(--neon);
+pointer-events:none;z-index:999;
 box-shadow:0 0 20px var(--neon);
 }
 
-/* 🎵 PROGRESS */
+/* 🎵 BARRA */
 #music-progress{
-position:fixed;
-top:0;
-left:0;
-height:2px;
-width:0%;
+position:fixed;top:0;left:0;height:2px;width:0%;
 background:linear-gradient(90deg,var(--blue),var(--neon));
 z-index:999;
 }
 
-/* 🌌 FONDO */
+/* 🌆 CIUDAD */
 canvas{
 position:fixed;
-top:0;
+bottom:0;
 left:0;
 z-index:-1;
 }
@@ -65,268 +64,141 @@ z-index:-1;
 /* HERO */
 .hero{
 height:100vh;
-background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.95)),
-url('42010.jpg');
-background-size:cover;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-flex-direction:column;
 text-align:center;
 }
 
-.hero h1{
+/* 🔥 GLITCH */
+.glitch{
 font-size:5rem;
-letter-spacing:10px;
-text-shadow:0 0 40px var(--neon);
+position:relative;
+animation:glitch 1s infinite;
+text-shadow:0 0 20px var(--neon);
 }
 
-.hero p{
-margin-top:10px;
-color:#aaa;
-letter-spacing:4px;
+@keyframes glitch{
+0%{transform:translate(0);}
+20%{transform:translate(-2px,2px);}
+40%{transform:translate(2px,-2px);}
+60%{transform:translate(-2px,0);}
+80%{transform:translate(2px,2px);}
+100%{transform:translate(0);}
 }
 
-/* SECTIONS */
-section{
-padding:120px 30px;
-max-width:1100px;
-margin:auto;
-}
-
-h2{
-text-align:center;
-letter-spacing:6px;
-color:#888;
-margin-bottom:80px;
-}
-
-/* 🧊 GLASS */
-.glass{
-background:rgba(255,255,255,0.04);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.05);
-border-radius:25px;
-padding:40px;
-}
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-}
-
-/* CARD */
-.card{
-transition:0.4s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 0 30px #00e1ff40;
-}
-
-.card h3{
-font-family:'JetBrains Mono', monospace;
-margin-bottom:15px;
-}
-
-.card p{
-color:#777;
-}
-
-/* 🎮 PROYECTOS */
-.project img{
-width:100%;
-border-radius:20px;
-transition:0.4s;
-}
-
-.project img:hover{
-transform:scale(1.05);
-box-shadow:0 0 30px var(--neon);
-}
-
-/* 🔘 BOTONES */
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:12px 30px;
-border:1px solid var(--neon);
-border-radius:10px;
-color:var(--neon);
-text-decoration:none;
-transition:0.3s;
-}
-
-.btn:hover{
-background:var(--neon);
-color:black;
-box-shadow:0 0 20px var(--neon);
-}
-
-/* 🎧 PLAYER */
+/* PLAYER */
 .player{
 position:fixed;
 bottom:0;
-left:0;
 width:100%;
 background:#0a0a0a;
-padding:10px;
+padding:10px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-font-size:0.9rem;
 }
 
-.player span{
-color:#ccc;
+.btn{
+cursor:pointer;
+color:var(--blue);
+}
+
+/* SECCIONES */
+section{padding:120px 30px;max-width:1100px;margin:auto;}
+
+.glass{
+background:rgba(255,255,255,0.04);
+backdrop-filter:blur(20px);
+border-radius:20px;
+padding:40px;
 }
 
 /* reveal */
-.reveal{
-opacity:0;
-transform:translateY(60px);
-transition:1s;
-}
+.reveal{opacity:0;transform:translateY(60px);transition:1s;}
+.reveal.active{opacity:1;transform:translateY(0);}
 
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
-
-footer{
-text-align:center;
-padding:80px;
-color:#333;
-}
-
+footer{text-align:center;padding:80px;color:#333;}
 </style>
 </head>
 
 <body>
 
+<div id="loader">initializing system...</div>
+
 <div class="cursor"></div>
 <div id="music-progress"></div>
 
-<canvas id="bg"></canvas>
+<canvas id="city"></canvas>
 
 <audio id="audio" loop>
 <source src="Súbete y Ya Verás(MP3_160K).mp3">
 </audio>
 
-<!-- HERO -->
 <div class="hero">
-<h1>rootnode_01</h1>
+<h1 class="glitch">rootnode_01</h1>
 <p>future // developer</p>
 </div>
 
-<!-- STACK -->
 <section class="reveal">
+<div class="glass">
 <h2>// stack</h2>
-
-<div class="glass grid">
-
-<div class="card">
-<h3>01 / minecraft</h3>
-<p>Optimización TPS y redes velocity.</p>
-</div>
-
-<div class="card">
-<h3>02 / discord</h3>
-<p>Bots avanzados y automatización.</p>
-</div>
-
-<div class="card">
-<h3>03 / vps</h3>
-<p>Infraestructura Linux.</p>
-</div>
-
-</div>
-</section>
-
-<!-- PROYECTOS -->
-<section class="reveal">
-<h2>// proyectos</h2>
-
-<div class="grid">
-
-<div class="project">
-<img src="42010.jpg">
-</div>
-
-<div class="project">
-<img src="42010.jpg">
-</div>
-
-</div>
-</section>
-
-<!-- CONTACTO -->
-<section class="reveal">
-<h2>// contacto</h2>
-<div style="text-align:center;">
-<a href="#" class="btn">Discord</a>
-<a href="#" class="btn">GitHub</a>
+<p>minecraft / discord / vps</p>
 </div>
 </section>
 
 <footer>// © 2026 // rootnode_01 //</footer>
 
-<!-- PLAYER -->
 <div class="player">
 <span>Súbete y Ya Verás</span>
-<span>▶</span>
+<span class="btn" onclick="togglePlay()">▶ / ❚❚</span>
 </div>
 
 <script>
-// 🎵 audio
+// loader
+setTimeout(()=>{document.getElementById("loader").style.display="none";},2000);
+
+// cursor
+let c=document.querySelector(".cursor");
+document.addEventListener("mousemove",e=>{
+c.style.top=e.clientY+"px";
+c.style.left=e.clientX+"px";
+});
+
+// audio
 let audio=document.getElementById("audio");
 let bar=document.getElementById("music-progress");
 
-document.body.onclick=()=>{if(audio.paused)audio.play();}
+function togglePlay(){
+if(audio.paused) audio.play(); else audio.pause();
+}
 
 audio.ontimeupdate=()=>{
 bar.style.width=(audio.currentTime/audio.duration)*100+"%";
 }
 
-// 🖱️ cursor
-let cursor=document.querySelector(".cursor");
-document.addEventListener("mousemove",e=>{
-cursor.style.top=e.clientY+"px";
-cursor.style.left=e.clientX+"px";
-});
-
-// 🌌 partículas
-let canvas=document.getElementById("bg");
+// ciudad animada
+let canvas=document.getElementById("city");
 let ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+canvas.height=300;
 
-let particles=[];
-for(let i=0;i<100;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2
-});
-}
-
-function draw(){
+function drawCity(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="#00e1ff";
-ctx.fill();
-});
-requestAnimationFrame(draw);
-}
-draw();
 
-// scroll reveal
+for(let i=0;i<50;i++){
+let x=i*50;
+let h=Math.random()*200;
+ctx.fillStyle="#0ff2";
+ctx.fillRect(x,canvas.height-h,30,h);
+}
+
+requestAnimationFrame(drawCity);
+}
+drawCity();
+
+// scroll
 function reveal(){
 document.querySelectorAll(".reveal").forEach(el=>{
 if(el.getBoundingClientRect().top < window.innerHeight-100){
