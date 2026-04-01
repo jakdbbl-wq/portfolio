@@ -24,7 +24,8 @@
         /* --- SECCIÓN HERO (ENCABEZADO) --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('42010.jpg');
+            /* Aquí he puesto el nombre exacto de tu imagen */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('d27e5f997791490bcdb059e9e32c0f0e (1).jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -36,7 +37,7 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: clamp(3rem, 10vw, 5rem);
             color: white;
             text-shadow: 0 0 20px var(--primary);
             letter-spacing: 5px;
@@ -44,7 +45,7 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -71,47 +72,51 @@
         }
 
         h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--primary);
             margin-bottom: 40px;
             text-align: center;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .card {
             background: #111;
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid var(--primary);
-            transition: 0.3s;
+            padding: 35px;
+            border-radius: 20px;
+            border-bottom: 3px solid var(--primary);
+            transition: 0.4s;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 0 25px rgba(188, 19, 254, 0.3);
+            box-shadow: 0 10px 30px rgba(188, 19, 254, 0.2);
+            border-color: var(--accent);
         }
 
-        .card h3 { color: var(--accent); margin-bottom: 15px; }
+        .card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; }
 
         .btn-contact {
             display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
-            background: var(--primary);
+            margin-top: 40px;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            box-shadow: 0 0 15px var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(188, 19, 254, 0.4);
         }
 
-        footer { text-align: center; padding: 50px; color: #444; }
+        footer { text-align: center; padding: 60px; color: #555; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -119,36 +124,36 @@
     <div class="hero">
         <h1>ᴄʀɪꜱᴛɪᴀɴ</h1>
         <p>ɴᴇᴛᴡᴏʀᴋ ᴅᴇᴠᴇʟᴏᴘᴇʀ & ʙᴏᴛ ᴄᴏɴꜰɪɢᴜʀᴀᴛᴏʀ</p>
-        <a href="#about" class="btn-contact" style="margin-top: 50px;">ᴠᴇʀ ᴍᴀꜱ</a>
+        <a href="#experience" class="btn-contact">ᴇxᴘʟᴏʀᴀʀ ᴘᴏʀᴛꜰᴏʟɪᴏ</a>
     </div>
 
     <div class="music-box">
         <audio id="myAudio" loop>
             <source src="Súbete y Ya Verás(MP3_160K).mp3" type="audio/mpeg">
         </audio>
-        <button onclick="toggleAudio()" id="btn" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold;">ᴘʟᴀʏ ᴍᴜꜱɪᴄ</button>
+        <button onclick="toggleAudio()" id="btn" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold; font-size: 14px;">ᴘʟᴀʏ ᴍᴜꜱɪᴄ</button>
     </div>
 
-    <section id="about">
-        <h2>ᴇxᴘᴇʀɪᴇɴᴄɪᴀ</h2>
+    <section id="experience">
+        <h2>ᴇxᴘᴇʀɪᴇɴᴄɪᴀ ᴛéᴄɴɪᴄᴀ</h2>
         <div class="grid">
             <div class="card">
                 <h3>ᴍɪɴᴇᴄʀᴀꜰᴛ ɴᴇᴛᴡᴏʀᴋꜱ</h3>
-                <p>Especialista en redes de alto rendimiento. Configuración de Velocity, Geyser para cross-play y optimización de servidores para asegurar 20 TPS constantes.</p>
+                <p>Especialista en redes de alto rendimiento. Configuración experta de Velocity, Geyser para compatibilidad Java/Bedrock y optimización avanzada de Paper/Purpur para mantener 20 TPS constantes.</p>
             </div>
             <div class="card">
                 <h3>ᴅɪꜱᴄᴏʀᴅ ʙᴏᴛꜱ</h3>
-                <p>Desarrollo de bots avanzados con sistemas de tickets, embeds profesionales y automatización de comunidades en Discord.</p>
+                <p>Desarrollo de bots personalizados en Python. Creación de sistemas de tickets automáticos, embeds de alta calidad, moderación avanzada e integración con bases de datos SQL.</p>
             </div>
             <div class="card">
                 <h3>ᴠᴘꜱ & ꜱʏꜱᴛᴇᴍꜱ</h3>
-                <p>Gestión de servidores Linux, transferencia de archivos vía SFTP y bases de datos para redes de gran escala.</p>
+                <p>Configuración de entornos Linux (Ubuntu), gestión de archivos vía SFTP (FileZilla) y despliegue de bases de datos MariaDB/MySQL para redes de gran escala.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>© 2026 ᴄʀɪꜱᴛɪᴀɴ - ᴀʟʟ ʀɪɢʜᴛꜱ ʀᴇꜱᴇʀᴠᴇᴅ</p>
+        <p>© 2026 ᴄʀɪꜱᴛɪᴀɴ • ᴘʀᴏꜰᴇꜱꜱɪᴏɴᴀʟ ᴅᴇᴠᴇʟᴏᴘᴇʀ ᴘᴏʀᴛꜰᴏʟɪᴏ</p>
     </footer>
 
     <script>
