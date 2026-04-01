@@ -3,304 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EPYC | Developer & Minecraft Expert</title>
+    <title>ZaykoMC | Professional Developer & Bot Creator</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
-            --bg-dark: #050a12;
-            --card-bg: #0d1624;
-            --accent-blue: #00a2ff;
+            --primary: #00f2fe; /* Azul Neón */
+            --secondary: #4facfe; /* Azul Suave */
+            --bg-overlay: rgba(10, 15, 28, 0.75); /* Fondo oscuro semi-transparente */
             --text-main: #ffffff;
-            --text-dim: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.08);
+            --text-dim: #a0a8b3;
+            --glass-bg: rgba(255, 255, 255, 0.03); /* Fondo del marco blur */
+            --glass-border: rgba(255, 255, 255, 0.08); /* Borde del marco blur */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-        }
-
-        /* --- Navbar --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(5, 10, 18, 0.9);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: var(--accent-blue);
-            letter-spacing: 2px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav a {
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--accent-blue);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
+            background: #000; /* Fondo de seguridad mientras carga el video */
+            overflow: hidden; /* Evita que la página haga scroll si no es necesario */
             height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #101e33 0%, #050a12 100%);
-            padding: 0 20px;
+            justify-content: center;
+            color: var(--text-main);
         }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            background: var(--card-bg);
-            border: 2px solid var(--accent-blue);
-            border-radius: 50%;
-            margin-bottom: 20px;
+        /* --- Fondo de Ciudad Lloviendo --- */
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -2;
+            object-fit: cover;
+            filter: blur(2px) brightness(0.6); /* Sutil blur y oscurecimiento */
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, #000 120%);
+            z-index: -1;
+        }
+
+        /* --- Marco con Blur (Glassmorphism Container) --- */
+        .glass-container {
+            width: 85%;
+            max-width: 1100px;
+            height: 85vh;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
             display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Permite scroll DENTRO del marco si hay mucho contenido */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            padding: 50px 8%;
+        }
+
+        /* Personalización del Scrollbar dentro del marco */
+        .glass-container::-webkit-scrollbar { width: 8px; }
+        .glass-container::-webkit-scrollbar-track { background: transparent; }
+        .glass-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+        /* --- Presentación Profesional --- */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
+            margin-bottom: 25px;
+            background: #111; /* Marcador de posición */
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
             font-weight: 800;
-            font-size: 1.8rem;
-            box-shadow: 0 0 20px rgba(0, 162, 255, 0.2);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
             margin-bottom: 10px;
-            letter-spacing: -1px;
         }
 
-        .hero p {
+        .hero h2 {
+            font-size: 1.4rem;
             color: var(--text-dim);
-            font-size: 1.1rem;
-            max-width: 600px;
+            font-weight: 400;
+            margin-bottom: 30px;
         }
 
-        /* --- Secciones Generales --- */
-        section {
-            padding: 100px 10%;
+        /* --- Experiencia --- */
+        .experience h3 {
+            font-size: 2rem;
             text-align: center;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             position: relative;
         }
 
-        h2::after {
+        .experience h3::after {
             content: '';
             display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--accent-blue);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
             margin: 15px auto;
+            border-radius: 2px;
         }
 
-        .grid {
+        .network-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
+        }
+
+        .network-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            transition: 0.3s ease;
+        }
+
+        .network-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            background: rgba(0, 242, 254, 0.02);
+        }
+
+        .network-card h4 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .network-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- Botones Flotantes Interactivos (Sidebar) --- */
+        .floating-socials {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 100;
+        }
+
+        .floating-btn {
+            width: 55px;
+            height: 55px;
+            background: rgba(10, 15, 28, 0.8);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dim);
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .floating-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Etiqueta Tooltip al hacer hover */
+        .floating-btn .tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #111;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            border: 1px solid var(--primary);
+        }
+
+        .floating-btn:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Estilo para los botones principales de la Hero */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
             margin-top: 30px;
         }
 
-        /* --- Tarjetas (Cards) --- */
-        .card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid var(--border-color);
-            transition: 0.4s;
-            text-align: left;
-        }
-
-        .card:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .card h3 {
-            margin-bottom: 15px;
-            color: var(--accent-blue);
-        }
-
-        .card p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
-        .price {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        /* --- Botones --- */
-        .btn {
-            display: inline-block;
+        .btn-hero {
             padding: 12px 30px;
-            background: var(--accent-blue);
-            color: white;
-            text-decoration: none;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
             border-radius: 8px;
+            text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background: #0086d4;
-            box-shadow: 0 5px 15px rgba(0, 162, 255, 0.4);
-        }
-
-        /* --- Footer / Contacto --- */
-        .contact-grid {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
         }
 
-        .social-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            width: 200px;
-            border: 1px solid var(--border-color);
-            text-decoration: none;
-            color: white;
-            transition: 0.3s;
+        .btn-hero:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 5px 20px rgba(255,255,255,0.2);
         }
 
-        .social-card:hover {
-            background: #1a2638;
+        .btn-discord {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-discord:hover {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 5px 20px rgba(0, 242, 254, 0.3);
+        }
+
+        /* --- Footer (ID de Usuario) --- */
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 50px;
+            color: #444;
+            font-size: 0.75rem;
+            border-top: 1px solid var(--glass-border);
         }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            nav ul { display: none; }
+            .glass-container { width: 95%; height: 90vh; padding: 40px 5%; }
+            .floating-socials { right: 15px; }
+            .floating-btn { width: 45px; height: 45px; font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">EPYC</div>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#precios">Precios</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
+    <video autoplay loop muted playsinline id="bg-video">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-city-lights-at-night-with-rain-31627-large.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
 
-    <section id="inicio" class="hero">
-        <div class="profile-img">EPYC</div>
-        <h1>EPYC Developer</h1>
-        <p>Desarrollador Web & Java | Experto en optimización de redes Minecraft con más de 6 años de experiencia transformando ideas en realidades digitales.</p>
-    </section>
+    <div class="floating-socials">
+        <a href="#" class="floating-btn btn-id-copy" data-id="1436647476693041182">
+            <i class="fab fa-discord"></i>
+            <span class="tooltip">Copiar mi ID</span>
+        </a>
+        <a href="https://www.tiktok.com/@.zaykomc?_r=1&_t=ZS-95AK7BMVM85" target="_blank" class="floating-btn">
+            <i class="fab fa-tiktok"></i>
+            <span class="tooltip">Mi TikTok</span>
+        </a>
+        <a href="#" class="floating-btn">
+            <i class="fas fa-cube"></i>
+            <span class="tooltip">Mi Perfil MC</span>
+        </a>
+    </div>
 
-    <section id="servicios">
-        <h2>Servicios Profesionales</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Desarrollo Web</h3>
-                <p>Sitios modernos, responsivos y optimizados para SEO. Ideal para portafolios, tiendas o landing pages de alto impacto.</p>
+    <div class="glass-container">
+        <section class="hero">
+            <div class="profile-pic">Z</div> <h1>ZaykoMC</h1>
+            <h2>Professional Developer & Custom Bot Creator</h2>
+            <p style="color: var(--text-dim); max-width: 650px; margin: 0 auto; line-height: 1.8;">
+                Especializado en el desarrollo de infraestructuras complejas para Minecraft y sistemas de automatización personalizados para Discord. Me enfoco en soluciones escalables, seguras y de alto rendimiento que transforman comunidades.
+            </p>
+            
+            <div class="btn-group">
+                <a href="#experiencia" class="btn-hero btn-discord">
+                    <i class="fab fa-discord"></i> Mi Perfil Discord
+                </a>
+                <a href="https://www.tiktok.com/@.zaykomc" target="_blank" class="btn-hero">
+                    <i class="fab fa-tiktok"></i> TikTok
+                </a>
             </div>
-            <div class="card">
-                <h3>Desarrollo Java</h3>
-                <p>Programación de plugins personalizados para Minecraft, optimizados para soportar grandes flujos de jugadores sin lag.</p>
-            </div>
-            <div class="card">
-                <h3>Gestión de Redes</h3>
-                <p>Configuración avanzada de VPS, dedicados y paneles Pterodactyl. Seguridad contra ataques y estabilidad garantizada.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="precios" style="background: rgba(255,255,255,0.02);">
-        <h2>Planes y Precios</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Portfolio / Bio</h3>
-                <span class="price">$20 USD</span>
-                <p>Diseño moderno de una sección, enlaces a redes sociales y entrega en 48 horas.</p>
-                <a href="#" class="btn">Comprar ahora</a>
+        <section id="experiencia" class="experience">
+            <h3>Trayectoria Profesional</h3>
+            <p style="text-align: center; color: var(--text-dim); margin-bottom: 40px;">He tenido el privilegio de colaborar y optimizar el rendimiento en redes de alto perfil:</p>
+            
+            <div class="network-grid">
+                <div class="network-card">
+                    <h4>Celestian SMP</h4>
+                    <p>Desarrollo de bots de gestión comunitaria, optimización de flags de Java para servidores y creación de sistemas de economía interconectados.</p>
+                </div>
+                <div class="network-card">
+                    <h4>Lucas Network</h4>
+                    <p>Implementación de seguridad avanzada contra ataques Layer 7, configuración de proxy (Bungee/Velocity) y desarrollo de plugins de sincronización de datos.</p>
+                </div>
+                <div class="network-card">
+                    <h4>Solarkraft</h4>
+                    <p>Creación de mecánicas de juego personalizadas y automatización del soporte técnico a través de bots de Discord de última generación.</p>
+                </div>
             </div>
-            <div class="card" style="border-color: var(--accent-blue);">
-                <div style="background: var(--accent-blue); color: #fff; padding: 2px 10px; border-radius: 5px; font-size: 0.7rem; display: inline-block; margin-bottom: 10px;">DESTACADO</div>
-                <h3>Landing Page</h3>
-                <span class="price">$50 USD</span>
-                <p>Hasta 5 secciones, animaciones futuristas, diseño interactivo y soporte de actualizaciones.</p>
-                <a href="#" class="btn">Comprar ahora</a>
-            </div>
-            <div class="card">
-                <h3>Servidor Minecraft</h3>
-                <span class="price">$30 USD</span>
-                <p>Instalación completa, traducción de plugins, seguridad avanzada y optimización de TPS.</p>
-                <a href="#" class="btn">Comprar ahora</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contacto">
-        <h2>Contacto</h2>
-        <p style="margin-bottom: 40px; color: var(--text-dim);">¿Tienes un proyecto en mente? Hablemos.</p>
-        <div class="contact-grid">
-            <a href="#" class="social-card">
-                <strong>Discord</strong><br>
-                <span style="font-size: 0.8rem; color: var(--accent-blue);">@epycdev</span>
-            </a>
-            <a href="#" class="social-card">
-                <strong>GitHub</strong><br>
-                <span style="font-size: 0.8rem; color: var(--accent-blue);">epyc-dev</span>
-            </a>
-            <a href="#" class="social-card">
-                <strong>Instagram</strong><br>
-                <span style="font-size: 0.8rem; color: var(--accent-blue);">@danilh.dev</span>
-            </a>
-        </div>
-    </section>
+        <footer>
+            Discord User ID: 1436647476693041182 | &copy; 2026 ZaykoMC. Todos los derechos reservados.
+        </footer>
+    </div>
 
-    <footer style="padding: 40px; text-align: center; font-size: 0.8rem; color: #444; border-top: 1px solid var(--border-color);">
-        &copy; 2026 EPYC Developer. Todos los derechos reservados.
-    </footer>
+    <script>
+        document.querySelector('.btn-id-copy').addEventListener('click', function(e) {
+            e.preventDefault();
+            const idToCopy = this.getAttribute('data-id');
+            const tooltip = this.querySelector('.tooltip');
+            const originalTooltipText = tooltip.innerText;
+
+            navigator.clipboard.writeText(idToCopy).then(() => {
+                tooltip.innerText = "¡ID Copiado!";
+                setTimeout(() => {
+                    tooltip.innerText = originalTooltipText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+            });
+        });
+    </script>
 
 </body>
 </html>
