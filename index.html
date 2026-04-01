@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROOTNODE_01 | Professional Developer & Bot Creator</title>
+    <title>rootnode_01 | Professional Developer</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
             --primary: #00f2fe; /* Azul Neón */
-            --secondary: #4facfe; /* Azul Suave */
-            --bg-overlay: rgba(10, 15, 28, 0.75); /* Fondo oscuro semi-transparente */
+            --accent: #4facfe; /* Azul Aciano */
+            --bg-overlay: rgba(5, 8, 15, 0.85); /* Fondo oscuro profundo semi-transparente */
             --text-main: #ffffff;
-            --text-dim: #a0a8b3;
-            --glass-bg: rgba(255, 255, 255, 0.03); /* Fondo del marco blur */
-            --glass-border: rgba(255, 255, 255, 0.08); /* Borde del marco blur */
+            --text-dim: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.02); /* Fondo del marco blur */
+            --glass-border: rgba(255, 255, 255, 0.06); /* Borde del marco blur */
         }
 
         * {
@@ -27,25 +27,29 @@
         }
 
         body {
-            background: #000; /* Fondo de seguridad mientras carga el video */
-            overflow: hidden; /* Evita que la página haga scroll si no es necesario */
+            background-color: #000; /* Color de seguridad */
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-main);
+            overflow: hidden; /* Evita scroll de la página completa */
         }
 
-        /* --- Fondo de Ciudad Lloviendo --- */
-        #bg-video {
+        /* --- Fondo de Ciudad Lloviendo (Imagen fija) --- */
+        .page-background {
             position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* INSTRUCCIÓN: Cambia 'ciudad_fondo.jpg' por el nombre de tu imagen descargada */
+            background-image: url('ciudad_fondo.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: grayscale(100%) brightness(0.4) blur(1px); /* Blanco y negro, oscuro y sutil blur */
             z-index: -2;
-            object-fit: cover;
-            filter: blur(2px) brightness(0.6); /* Sutil blur y oscurecimiento */
         }
 
         .video-overlay {
@@ -54,7 +58,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, transparent 20%, #000 120%);
+            background: radial-gradient(circle, transparent 10%, #000 130%);
             z-index: -1;
         }
 
@@ -64,135 +68,138 @@
             max-width: 1100px;
             height: 85vh;
             background: var(--glass-bg);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 24px;
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
+            border-radius: 20px;
             border: 1px solid var(--glass-border);
             display: flex;
             flex-direction: column;
-            overflow-y: auto; /* Permite scroll DENTRO del marco si hay mucho contenido */
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            padding: 50px 8%;
+            overflow-y: auto; /* Permite scroll DENTRO del marco */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            padding: 60px 8%;
+            position: relative;
         }
 
         /* Personalización del Scrollbar dentro del marco */
-        .glass-container::-webkit-scrollbar { width: 8px; }
+        .glass-container::-webkit-scrollbar { width: 6px; }
         .glass-container::-webkit-scrollbar-track { background: transparent; }
-        .glass-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .glass-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+        /* --- Navbar (Logo rootnode_01) --- */
+        .nav-header {
+            position: absolute;
+            top: 25px;
+            left: 8%;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+            text-transform: lowercase;
+        }
 
         /* --- Presentación Profesional --- */
         .hero {
             text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .profile-pic {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 3px solid var(--primary);
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
-            margin-bottom: 25px;
-            background: #111; /* Marcador de posición */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--primary);
-            font-weight: 800;
+            margin-bottom: 70px;
+            margin-top: 20px;
         }
 
         .hero h1 {
-            font-size: 3.8rem;
+            font-size: 4rem;
             font-weight: 800;
             background: linear-gradient(to right, var(--primary), #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -2px;
             margin-bottom: 10px;
+            text-transform: lowercase;
         }
 
         .hero h2 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--text-dim);
             font-weight: 400;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         /* --- Experiencia --- */
+        .experience {
+            margin-bottom: 70px;
+        }
+
         .experience h3 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             position: relative;
         }
 
         .experience h3::after {
             content: '';
             display: block;
-            width: 60px;
-            height: 4px;
+            width: 50px;
+            height: 3px;
             background: var(--primary);
             margin: 15px auto;
-            border-radius: 2px;
+            border-radius: 1.5px;
         }
 
         .network-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 20px;
         }
 
         .network-card {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 30px;
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.015);
+            padding: 35px;
+            border-radius: 15px;
             border: 1px solid var(--glass-border);
             transition: 0.3s ease;
         }
 
         .network-card:hover {
             border-color: var(--primary);
-            transform: translateY(-5px);
-            background: rgba(0, 242, 254, 0.02);
+            transform: translateY(-4px);
+            background: rgba(0, 242, 254, 0.015);
         }
 
         .network-card h4 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .network-card p {
             color: var(--text-dim);
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         /* --- Botones Flotantes Interactivos (Sidebar) --- */
         .floating-socials {
             position: fixed;
-            right: 30px;
+            right: 25px;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             z-index: 100;
         }
 
         .floating-btn {
-            width: 55px;
-            height: 55px;
-            background: rgba(10, 15, 28, 0.8);
+            width: 52px;
+            height: 52px;
+            background: rgba(5, 8, 15, 0.8);
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-dim);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             text-decoration: none;
             transition: all 0.3s ease;
             position: relative;
@@ -201,21 +208,21 @@
         .floating-btn:hover {
             color: var(--primary);
             border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
-            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+            transform: scale(1.08);
         }
 
         /* Etiqueta Tooltip al hacer hover */
         .floating-btn .tooltip {
             position: absolute;
-            right: 70px;
+            right: 65px;
             top: 50%;
             transform: translateY(-50%);
-            background: #111;
+            background: #0a0a0a;
             color: #fff;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            padding: 7px 12px;
+            border-radius: 5px;
+            font-size: 0.75rem;
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
@@ -231,29 +238,30 @@
         /* Estilo para los botones principales de la Hero */
         .btn-group {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 35px;
         }
 
         .btn-hero {
-            padding: 12px 30px;
+            padding: 11px 28px;
             background: transparent;
             color: #fff;
             border: 2px solid #fff;
-            border-radius: 8px;
+            border-radius: 7px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: 0.3s;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 9px;
         }
 
         .btn-hero:hover {
             background: #fff;
             color: #000;
-            box-shadow: 0 5px 20px rgba(255,255,255,0.2);
+            box-shadow: 0 4px 15px rgba(255,255,255,0.15);
         }
 
         .btn-discord {
@@ -264,32 +272,30 @@
         .btn-discord:hover {
             background: var(--primary);
             color: #000;
-            box-shadow: 0 5px 20px rgba(0, 242, 254, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.25);
         }
 
         /* --- Footer (ID de Usuario) --- */
         footer {
             text-align: center;
             margin-top: auto;
-            padding-top: 50px;
-            color: #444;
-            font-size: 0.75rem;
+            padding-top: 40px;
+            color: #333;
+            font-size: 0.7rem;
             border-top: 1px solid var(--glass-border);
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .glass-container { width: 95%; height: 90vh; padding: 40px 5%; }
-            .floating-socials { right: 15px; }
-            .floating-btn { width: 45px; height: 45px; font-size: 1.1rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .glass-container { width: 92%; height: 90vh; padding: 50px 5%; }
+            .floating-socials { right: 12px; }
+            .floating-btn { width: 44px; height: 44px; font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
-    <video autoplay loop muted playsinline id="bg-video">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-city-lights-at-night-with-rain-31627-large.mp4" type="video/mp4">
-    </video>
+    <div class="page-background"></div>
     <div class="video-overlay"></div>
 
     <div class="floating-socials">
@@ -308,18 +314,20 @@
     </div>
 
     <div class="glass-container">
+        <div class="nav-header">rootnode_01</div>
+
         <section class="hero">
-            <div class="profile-pic">Z</div> <h1>ZaykoMC</h1>
+            <h1>rootnode_01</h1>
             <h2>Professional Developer & Custom Bot Creator</h2>
-            <p style="color: var(--text-dim); max-width: 650px; margin: 0 auto; line-height: 1.8;">
-                Especializado en el desarrollo de infraestructuras complejas para Minecraft y sistemas de automatización personalizados para Discord. Me enfoco en soluciones escalables, seguras y de alto rendimiento que transforman comunidades.
+            <p style="color: var(--text-dim); max-width: 680px; margin: 0 auto; line-height: 1.8; font-size: 0.95rem;">
+                Especializado en el desarrollo de infraestructuras críticas para Minecraft y sistemas de automatización avanzados para Discord. Mi enfoque se centra en soluciones escalables, seguras y de alto rendimiento que impulsan el crecimiento de comunidades.
             </p>
             
             <div class="btn-group">
-                <a href="#experiencia" class="btn-hero btn-discord">
+                <a href="https://discord.gg/TU_INVITACION" target="_blank" class="btn-hero btn-discord">
                     <i class="fab fa-discord"></i> Mi Perfil Discord
                 </a>
-                <a href="https://www.tiktok.com/@.zaykomc" target="_blank" class="btn-hero">
+                <a href="https://www.tiktok.com/@.zaykomc?_r=1&_t=ZS-95AK7BMVM85" target="_blank" class="btn-hero">
                     <i class="fab fa-tiktok"></i> TikTok
                 </a>
             </div>
@@ -327,7 +335,7 @@
 
         <section id="experiencia" class="experience">
             <h3>Trayectoria Profesional</h3>
-            <p style="text-align: center; color: var(--text-dim); margin-bottom: 40px;">He tenido el privilegio de colaborar y optimizar el rendimiento en redes de alto perfil:</p>
+            <p style="text-align: center; color: var(--text-dim); margin-bottom: 35px; font-size: 0.95rem;">He tenido el privilegio de colaborar y optimizar el rendimiento en redes de alto perfil:</p>
             
             <div class="network-grid">
                 <div class="network-card">
@@ -346,24 +354,37 @@
         </section>
 
         <footer>
-            Discord User ID: 1436647476693041182 | &copy; 2026 ZaykoMC. Todos los derechos reservados.
+            Discord User ID: 1436647476693041182 | &copy; 2026 rootnode_01. Todos los derechos reservados.
         </footer>
     </div>
 
     <script>
         document.querySelector('.btn-id-copy').addEventListener('click', function(e) {
-            e.preventDefault();
+            e.preventDefault(); // Evita que el enlace recargue la página
             const idToCopy = this.getAttribute('data-id');
             const tooltip = this.querySelector('.tooltip');
             const originalTooltipText = tooltip.innerText;
 
+            // Intenta copiar al portapapeles
             navigator.clipboard.writeText(idToCopy).then(() => {
                 tooltip.innerText = "¡ID Copiado!";
+                tooltip.style.color = "#00ff88"; // Verde confirmación
+                tooltip.style.borderColor = "#00ff88";
+                
+                // Restaura el tooltip original después de 2 segundos
                 setTimeout(() => {
                     tooltip.innerText = originalTooltipText;
+                    tooltip.style.color = ""; // Restaura color original
+                    tooltip.style.borderColor = "";
                 }, 2000);
             }).catch(err => {
                 console.error('Error al copiar: ', err);
+                tooltip.innerText = "Error al copiar";
+                tooltip.style.color = "#ff4444"; // Rojo error
+                setTimeout(() => {
+                    tooltip.innerText = originalTooltipText;
+                    tooltip.style.color = "";
+                }, 2000);
             });
         });
     </script>
