@@ -3,213 +3,244 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>rootnode_01 // dev</title>
+<title>rootnode_01</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --neon1:#d300ff;
-    --neon2:#00e1ff;
-    --bg:#050505;
+:root{
+--blue:#00bfff;
+--bg:#05070a;
+--card:#0d1117;
+--text:#c9d1d9;
 }
 
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    cursor:none;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
 }
 
-body {
-    background:var(--bg);
-    color:white;
-    font-family:'Space Grotesk',sans-serif;
-    overflow-x:hidden;
+body{
+background:var(--bg);
+color:white;
+overflow-x:hidden;
 }
 
-/* 🖱️ CURSOR */
-.cursor {
-    width:14px;
-    height:14px;
-    border-radius:50%;
-    position:fixed;
-    background:var(--neon2);
-    pointer-events:none;
-    mix-blend-mode:difference;
-    z-index:9999;
+/* NAV */
+.nav{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 30px;
+background:rgba(5,7,10,0.7);
+backdrop-filter:blur(10px);
+z-index:999;
 }
 
-/* 🌌 PARTICULAS */
-canvas {
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:-1;
+.logo{
+color:var(--blue);
+font-weight:700;
+font-size:1.2rem;
 }
 
-/* 🎵 BARRA */
-#music-progress {
-    position:fixed;
-    top:0;
-    left:0;
-    width:0%;
-    height:3px;
-    background:linear-gradient(90deg,var(--neon2),var(--neon1));
-    z-index:999;
+.menu-btn{
+font-size:22px;
+cursor:pointer;
 }
 
-/* 🔥 HERO */
-.hero {
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
+/* MENU */
+.menu{
+position:fixed;
+right:-100%;
+top:0;
+width:260px;
+height:100%;
+background:#0a0f14;
+padding:40px;
+transition:0.4s;
 }
 
-/* 💀 TEXTO PRINCIPAL */
-.title {
-    font-family:'JetBrains Mono', monospace;
-    font-size:5.5rem;
-    letter-spacing:6px;
-    text-transform:lowercase;
-    position:relative;
-    animation:glitch 2s infinite;
+.menu.active{
+right:0;
 }
 
-/* glitch sutil */
-@keyframes glitch {
-    0% {text-shadow:0 0 5px var(--neon1);}
-    50% {text-shadow:2px -2px 10px var(--neon2);}
-    100% {text-shadow:0 0 20px var(--neon1);}
+.menu a{
+display:block;
+margin:20px 0;
+color:var(--text);
+text-decoration:none;
+font-size:1.1rem;
 }
 
-.subtitle {
-    margin-top:10px;
-    color:#888;
-    letter-spacing:4px;
-    font-size:0.9rem;
+/* HERO */
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.9)),
+url('42010.jpg');
+background-size:cover;
+background-position:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
 }
 
-/* scroll */
-.scroll {
-    position:absolute;
-    bottom:20px;
-    opacity:0.5;
-    animation:bounce 2s infinite;
+.hero h1{
+font-size:4rem;
+color:var(--blue);
+letter-spacing:4px;
 }
 
-@keyframes bounce {
-    50% { transform: translateY(10px); }
+.hero p{
+margin-top:10px;
+color:#aaa;
 }
 
-/* SECCION */
-section {
-    padding:120px 30px;
-    max-width:1100px;
-    margin:auto;
+/* DISCORD CARD STYLE */
+.profile-card{
+margin-top:40px;
+background:var(--card);
+padding:20px;
+border-radius:15px;
+width:300px;
+box-shadow:0 0 20px rgba(0,191,255,0.1);
 }
 
-h2 {
-    text-align:center;
-    letter-spacing:8px;
-    color:#777;
-    margin-bottom:60px;
+.profile-top{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.avatar{
+width:40px;
+height:40px;
+border-radius:50%;
+background:var(--blue);
+}
+
+.username{
+font-weight:600;
+}
+
+.status{
+margin-top:20px;
+color:#888;
+font-size:0.9rem;
+text-align:center;
+}
+
+/* SECTION */
+section{
+padding:120px 30px;
+max-width:1100px;
+margin:auto;
+}
+
+h2{
+text-align:center;
+margin-bottom:60px;
+color:#aaa;
 }
 
 /* GRID */
-.grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
 }
 
 /* CARDS */
-.card {
-    padding:40px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.02);
-    transition:0.4s;
+.card{
+background:var(--card);
+padding:30px;
+border-radius:20px;
+transition:0.3s;
 }
 
-.card:hover {
-    transform:translateY(-8px);
-    box-shadow:0 0 30px #00e1ff30;
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 0 30px rgba(0,191,255,0.3);
 }
 
-.card h3 {
-    margin-bottom:15px;
-    color:#ccc;
+.card h3{
+margin-bottom:15px;
 }
 
-.card p {
-    color:#777;
-    line-height:1.7;
+.card p{
+color:#888;
 }
 
-/* reveal */
-.reveal {
-    opacity:0;
-    transform:translateY(80px);
-    transition:1s;
-}
-
-.reveal.active {
-    opacity:1;
-    transform:translateY(0);
-}
-
-footer {
-    text-align:center;
-    padding:80px;
-    color:#444;
-}
-
-@media(max-width:768px){
-    .title {font-size:3rem;}
+/* FOOTER */
+footer{
+text-align:center;
+padding:80px;
+color:#444;
 }
 </style>
 </head>
 
 <body>
 
-<div class="cursor"></div>
-<div id="music-progress"></div>
-
-<canvas id="bg"></canvas>
-
-<audio id="myAudio" loop>
-<source src="Súbete y Ya Verás(MP3_160K).mp3" type="audio/mpeg">
+<audio id="audio" loop>
+<source src="Súbete y Ya Verás(MP3_160K).mp3">
 </audio>
+
+<!-- NAV -->
+<div class="nav">
+<div class="logo">rootnode_01</div>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+</div>
+
+<div class="menu" id="menu">
+<a href="#">Sobre mí</a>
+<a href="#">Servicios</a>
+<a href="#">Proyectos</a>
+<a href="#">Precios</a>
+<a href="#">Contacto</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
-    <h1 class="title">rootnode_01</h1>
-    <p class="subtitle">future // developer</p>
-    <div class="scroll">scroll ↓</div>
+<h1>rootnode_01</h1>
+<p>Desarrollador Web | Minecraft</p>
+
+<div class="profile-card">
+<div class="profile-top">
+<div class="avatar"></div>
+<div class="username">rootnode_01</div>
+</div>
+<div class="status">I'm not currently doing anything!</div>
+</div>
+
 </div>
 
 <!-- STACK -->
-<section class="reveal">
-<h2>// stack</h2>
+<section>
+<h2>Sobre mí</h2>
 
 <div class="grid">
 
 <div class="card">
-<h3>01 / minecraft</h3>
-<p>Redes velocity, optimización TPS y sistemas avanzados con Geyser.</p>
+<h3>Minecraft</h3>
+<p>Redes velocity, optimización TPS y sistemas avanzados.</p>
 </div>
 
 <div class="card">
-<h3>02 / discord</h3>
-<p>Bots profesionales, sistemas de tickets y automatización completa.</p>
+<h3>Discord</h3>
+<p>Bots profesionales, automatización y sistemas.</p>
 </div>
 
 <div class="card">
-<h3>03 / vps</h3>
-<p>Infraestructura linux, bases de datos y servidores escalables.</p>
+<h3>VPS</h3>
+<p>Infraestructura Linux y servidores escalables.</p>
 </div>
 
 </div>
@@ -218,59 +249,12 @@ footer {
 <footer>// rootnode_01 © 2026</footer>
 
 <script>
-// 🎵 música
-let audio=document.getElementById("myAudio");
-let bar=document.getElementById("music-progress");
+let audio=document.getElementById("audio");
+document.body.onclick=()=>{if(audio.paused)audio.play();}
 
-document.body.onclick=()=>{ if(audio.paused) audio.play(); }
-
-audio.ontimeupdate=()=>{
-bar.style.width=(audio.currentTime/audio.duration)*100+"%";
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
 }
-
-// 🖱️ cursor
-let cursor=document.querySelector(".cursor");
-document.addEventListener("mousemove",e=>{
-cursor.style.top=e.clientY+"px";
-cursor.style.left=e.clientX+"px";
-});
-
-// 🌌 partículas
-let canvas=document.getElementById("bg");
-let ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let particles=[];
-for(let i=0;i<80;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2
-});
-}
-
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="#00e1ff";
-ctx.fill();
-});
-requestAnimationFrame(draw);
-}
-draw();
-
-// scroll reveal
-function reveal(){
-document.querySelectorAll(".reveal").forEach(el=>{
-if(el.getBoundingClientRect().top < window.innerHeight-100){
-el.classList.add("active");
-}
-});
-}
-window.addEventListener("scroll",reveal);
 </script>
 
 </body>
