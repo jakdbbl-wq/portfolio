@@ -10,7 +10,7 @@
 <style>
 :root{
 --blue:#00bfff;
---bg:#05070a;
+--bg:#040608;
 --card:#0d1117;
 --text:#c9d1d9;
 }
@@ -28,41 +28,44 @@ color:white;
 overflow-x:hidden;
 }
 
-/* NAV */
+/* NAVBAR */
 .nav{
 position:fixed;
 top:0;
+left:0;
 width:100%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 30px;
-background:rgba(5,7,10,0.7);
-backdrop-filter:blur(10px);
+padding:18px 40px;
+background:rgba(4,6,8,0.7);
+backdrop-filter:blur(12px);
 z-index:999;
 }
 
 .logo{
 color:var(--blue);
 font-weight:700;
-font-size:1.2rem;
+font-size:1.3rem;
+letter-spacing:1px;
 }
 
 .menu-btn{
-font-size:22px;
+font-size:24px;
 cursor:pointer;
 }
 
 /* MENU */
 .menu{
 position:fixed;
-right:-100%;
 top:0;
-width:260px;
+right:-100%;
+width:270px;
 height:100%;
-background:#0a0f14;
-padding:40px;
-transition:0.4s;
+background:#070b10;
+padding:50px 30px;
+transition:0.4s ease;
+z-index:998;
 }
 
 .menu.active{
@@ -71,17 +74,22 @@ right:0;
 
 .menu a{
 display:block;
-margin:20px 0;
-color:var(--text);
+color:#d1d1d1;
 text-decoration:none;
+margin:20px 0;
 font-size:1.1rem;
+transition:0.3s;
+}
+
+.menu a:hover{
+color:var(--blue);
 }
 
 /* HERO */
 .hero{
 height:100vh;
 background:
-linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.9)),
+linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
 url('42010.jpg');
 background-size:cover;
 background-position:center;
@@ -90,54 +98,62 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+padding:20px;
 }
 
 .hero h1{
-font-size:4rem;
+font-size:4.5rem;
 color:var(--blue);
+font-weight:700;
 letter-spacing:4px;
 }
 
 .hero p{
 margin-top:10px;
-color:#aaa;
+color:#9aa0a6;
+font-size:1rem;
 }
 
-/* DISCORD CARD STYLE */
-.profile-card{
+/* DISCORD CARD */
+.discord-card{
 margin-top:40px;
 background:var(--card);
-padding:20px;
 border-radius:15px;
-width:300px;
-box-shadow:0 0 20px rgba(0,191,255,0.1);
+padding:20px;
+width:320px;
+box-shadow:0 0 25px rgba(0,191,255,0.08);
 }
 
-.profile-top{
+.dc-header{
 display:flex;
 align-items:center;
 gap:10px;
 }
 
-.avatar{
-width:40px;
-height:40px;
+.dc-avatar{
+width:45px;
+height:45px;
 border-radius:50%;
 background:var(--blue);
 }
 
-.username{
+.dc-name{
 font-weight:600;
 }
 
-.status{
-margin-top:20px;
+.dc-tag{
+font-size:0.8rem;
 color:#888;
+}
+
+.dc-status{
+margin-top:20px;
 font-size:0.9rem;
+color:#888;
 text-align:center;
 }
 
-/* SECTION */
+/* SECTIONS */
 section{
 padding:120px 30px;
 max-width:1100px;
@@ -146,8 +162,9 @@ margin:auto;
 
 h2{
 text-align:center;
-margin-bottom:60px;
 color:#aaa;
+margin-bottom:60px;
+font-weight:500;
 }
 
 /* GRID */
@@ -166,8 +183,8 @@ transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-5px);
-box-shadow:0 0 30px rgba(0,191,255,0.3);
+transform:translateY(-6px);
+box-shadow:0 0 30px rgba(0,191,255,0.25);
 }
 
 .card h3{
@@ -184,6 +201,12 @@ text-align:center;
 padding:80px;
 color:#444;
 }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.hero h1{font-size:3rem;}
+.discord-card{width:100%;}
+}
 </style>
 </head>
 
@@ -199,30 +222,36 @@ color:#444;
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 </div>
 
+<!-- MENU -->
 <div class="menu" id="menu">
 <a href="#">Sobre mí</a>
 <a href="#">Servicios</a>
 <a href="#">Proyectos</a>
 <a href="#">Precios</a>
+<a href="#">Testimonios</a>
 <a href="#">Contacto</a>
 </div>
 
 <!-- HERO -->
 <div class="hero">
 <h1>rootnode_01</h1>
-<p>Desarrollador Web | Minecraft</p>
+<p>Desarrollador Web | Java | Configurador Minecraft</p>
 
-<div class="profile-card">
-<div class="profile-top">
-<div class="avatar"></div>
-<div class="username">rootnode_01</div>
+<div class="discord-card">
+<div class="dc-header">
+<div class="dc-avatar"></div>
+<div>
+<div class="dc-name">rootnode_01</div>
+<div class="dc-tag">CODE</div>
 </div>
-<div class="status">I'm not currently doing anything!</div>
+</div>
+
+<div class="dc-status">I'm not currently doing anything!</div>
 </div>
 
 </div>
 
-<!-- STACK -->
+<!-- SOBRE MI -->
 <section>
 <h2>Sobre mí</h2>
 
@@ -230,17 +259,17 @@ color:#444;
 
 <div class="card">
 <h3>Minecraft</h3>
-<p>Redes velocity, optimización TPS y sistemas avanzados.</p>
+<p>Especialista en redes Velocity y optimización TPS.</p>
 </div>
 
 <div class="card">
 <h3>Discord</h3>
-<p>Bots profesionales, automatización y sistemas.</p>
+<p>Bots avanzados y sistemas automatizados.</p>
 </div>
 
 <div class="card">
 <h3>VPS</h3>
-<p>Infraestructura Linux y servidores escalables.</p>
+<p>Infraestructura Linux y bases de datos.</p>
 </div>
 
 </div>
