@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>rootnode_01</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -25,29 +25,24 @@ font-family:'Inter',sans-serif;
 body{
 background:var(--bg);
 color:white;
-overflow-x:hidden;
 }
 
-/* NAVBAR */
+/* NAV */
 .nav{
 position:fixed;
 top:0;
-left:0;
 width:100%;
 display:flex;
 justify-content:space-between;
-align-items:center;
-padding:18px 40px;
-background:rgba(4,6,8,0.7);
-backdrop-filter:blur(12px);
+padding:20px 40px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
 z-index:999;
 }
 
 .logo{
 color:var(--blue);
-font-weight:700;
-font-size:1.3rem;
-letter-spacing:1px;
+font-weight:800;
 }
 
 .menu-btn{
@@ -58,14 +53,13 @@ cursor:pointer;
 /* MENU */
 .menu{
 position:fixed;
-top:0;
 right:-100%;
-width:270px;
+top:0;
+width:260px;
 height:100%;
 background:#070b10;
-padding:50px 30px;
-transition:0.4s ease;
-z-index:998;
+padding:40px;
+transition:0.4s;
 }
 
 .menu.active{
@@ -74,15 +68,9 @@ right:0;
 
 .menu a{
 display:block;
-color:#d1d1d1;
-text-decoration:none;
 margin:20px 0;
-font-size:1.1rem;
-transition:0.3s;
-}
-
-.menu a:hover{
-color:var(--blue);
+color:#ccc;
+text-decoration:none;
 }
 
 /* HERO */
@@ -92,65 +80,35 @@ background:
 linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
 url('42010.jpg');
 background-size:cover;
-background-position:center;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:20px;
 }
 
 .hero h1{
 font-size:4.5rem;
 color:var(--blue);
-font-weight:700;
-letter-spacing:4px;
+font-weight:800;
 }
 
 .hero p{
+color:#aaa;
 margin-top:10px;
-color:#9aa0a6;
-font-size:1rem;
 }
 
 /* DISCORD CARD */
-.discord-card{
+.discord{
 margin-top:40px;
 background:var(--card);
-border-radius:15px;
 padding:20px;
+border-radius:15px;
 width:320px;
-box-shadow:0 0 25px rgba(0,191,255,0.08);
 }
 
-.dc-header{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.dc-avatar{
-width:45px;
-height:45px;
-border-radius:50%;
-background:var(--blue);
-}
-
-.dc-name{
-font-weight:600;
-}
-
-.dc-tag{
-font-size:0.8rem;
-color:#888;
-}
-
-.dc-status{
-margin-top:20px;
-font-size:0.9rem;
-color:#888;
-text-align:center;
+.discord strong{
+color:white;
 }
 
 /* SECTIONS */
@@ -162,9 +120,8 @@ margin:auto;
 
 h2{
 text-align:center;
-color:#aaa;
 margin-bottom:60px;
-font-weight:500;
+font-weight:800;
 }
 
 /* GRID */
@@ -174,38 +131,29 @@ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:30px;
 }
 
-/* CARDS */
+/* CARD */
 .card{
 background:var(--card);
 padding:30px;
-border-radius:20px;
-transition:0.3s;
+border-radius:15px;
 }
 
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 0 30px rgba(0,191,255,0.25);
+.card strong{
+color:white;
 }
 
-.card h3{
-margin-bottom:15px;
+/* PRECIOS */
+.price{
+text-align:center;
+font-size:2rem;
+color:var(--blue);
+margin:10px 0;
 }
 
-.card p{
-color:#888;
-}
-
-/* FOOTER */
 footer{
 text-align:center;
 padding:80px;
 color:#444;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-.hero h1{font-size:3rem;}
-.discord-card{width:100%;}
 }
 </style>
 </head>
@@ -216,63 +164,99 @@ color:#444;
 <source src="Súbete y Ya Verás(MP3_160K).mp3">
 </audio>
 
-<!-- NAV -->
 <div class="nav">
 <div class="logo">rootnode_01</div>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 </div>
 
-<!-- MENU -->
 <div class="menu" id="menu">
-<a href="#">Sobre mí</a>
-<a href="#">Servicios</a>
-<a href="#">Proyectos</a>
-<a href="#">Precios</a>
-<a href="#">Testimonios</a>
-<a href="#">Contacto</a>
+<a href="#about">Sobre mí</a>
+<a href="#services">Servicios</a>
+<a href="#projects">Proyectos</a>
+<a href="#pricing">Precios</a>
+<a href="#contact">Contacto</a>
 </div>
 
-<!-- HERO -->
 <div class="hero">
 <h1>rootnode_01</h1>
-<p>Desarrollador Web | Java | Configurador Minecraft</p>
+<p><strong>Desarrollador Web</strong> | Java | Minecraft</p>
 
-<div class="discord-card">
-<div class="dc-header">
-<div class="dc-avatar"></div>
-<div>
-<div class="dc-name">rootnode_01</div>
-<div class="dc-tag">CODE</div>
+<div class="discord">
+<strong>rootnode_01</strong><br>
+<span style="color:#888;">I'm not currently doing anything!</span>
 </div>
 </div>
 
-<div class="dc-status">I'm not currently doing anything!</div>
-</div>
-
-</div>
-
-<!-- SOBRE MI -->
-<section>
+<section id="about">
 <h2>Sobre mí</h2>
+<p style="text-align:center; max-width:700px; margin:auto; color:#aaa;">
+Soy <strong>desarrollador especializado</strong> en sistemas de servidores Minecraft, bots de Discord y gestión de infraestructura VPS. Me enfoco en crear soluciones <strong>eficientes, escalables y profesionales</strong>.
+</p>
+</section>
 
+<section id="services">
+<h2>Servicios</h2>
 <div class="grid">
 
 <div class="card">
 <h3>Minecraft</h3>
-<p>Especialista en redes Velocity y optimización TPS.</p>
+<p><strong>Optimización TPS</strong>, configuración avanzada y redes Velocity.</p>
 </div>
 
 <div class="card">
 <h3>Discord</h3>
-<p>Bots avanzados y sistemas automatizados.</p>
+<p><strong>Bots personalizados</strong>, tickets, economía y automatización.</p>
 </div>
 
 <div class="card">
 <h3>VPS</h3>
-<p>Infraestructura Linux y bases de datos.</p>
+<p><strong>Servidores Linux</strong>, bases de datos y mantenimiento.</p>
 </div>
 
 </div>
+</section>
+
+<section id="projects">
+<h2>Proyectos</h2>
+<div class="grid">
+
+<div class="card">
+<h3>LuxCraft</h3>
+<p>Red Minecraft optimizada con alto rendimiento.</p>
+</div>
+
+<div class="card">
+<h3>Bot Tickets</h3>
+<p>Sistema automatizado para soporte en Discord.</p>
+</div>
+
+</div>
+</section>
+
+<section id="pricing">
+<h2>Precios</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Básico</h3>
+<div class="price">$10</div>
+<p>Configuraciones simples.</p>
+</div>
+
+<div class="card">
+<h3>Pro</h3>
+<div class="price">$25</div>
+<p>Automatización completa.</p>
+</div>
+
+</div>
+</section>
+
+<section id="contact">
+<h2>Contacto</h2>
+<p style="text-align:center; color:#aaa;">
+Discord: <strong>rootnode_01</strong>
+</p>
 </section>
 
 <footer>// rootnode_01 © 2026</footer>
