@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ᴄʀɪꜱᴛɪᴀɴ | ᴅᴇᴠᴇʟᴏᴘᴇʀ</title>
+    <style>
+        body { background-color: #050505; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: linear-gradient(145deg, #121212, #000); border: 2px solid #ff0000; box-shadow: 0 0 20px #800000; padding: 40px; border-radius: 20px; text-align: center; width: 80%; max-width: 400px; }
+        h1 { color: #ff0000; letter-spacing: 2px; margin: 10px 0; }
+        .tagline { color: #888; font-size: 14px; margin-bottom: 30px; }
+        button { background: #800000; color: white; border: none; padding: 15px 30px; cursor: pointer; border-radius: 8px; font-weight: bold; transition: 0.3s; font-size: 16px; }
+        button:hover { background: #ff0000; box-shadow: 0 0 15px #ff0000; }
+        .skills { margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; font-size: 12px; color: #ff4d4d; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>ᴄʀɪꜱᴛɪᴀɴ</h1>
+        <p class="tagline">ᴍɪɴᴇᴄʀᴀꜰᴛ ɴᴇᴛᴡᴏʀᴋꜱ & ᴅɪꜱᴄᴏʀᴅ ʙᴏᴛ ᴅᴇᴠ</p>
+        
+        <audio id="myAudio" loop>
+            <source src="musica.mp3" type="audio/mpeg">
+        </audio>
+        
+        <button onclick="toggleAudio()" id="btn">ᴘʟᴀʏ ᴍᴜꜱɪᴄ</button>
+
+        <div class="skills">
+            ᴠᴇʟᴏᴄɪᴛʏ • ɢᴇʏꜱᴇʀ • ᴠᴘꜱ • ᴘʏᴛʜᴏɴ
+        </div>
+    </div>
+
+    <script>
+        var audio = document.getElementById("myAudio");
+        var btn = document.getElementById("btn");
+        function toggleAudio() {
+            if (audio.paused) { audio.play(); btn.innerHTML = "ᴘᴀᴜꜱᴇ ᴍᴜꜱɪᴄ"; }
+            else { audio.pause(); btn.innerHTML = "ᴘʟᴀʏ ᴍᴜꜱɪᴄ"; }
+        }
+    </script>
+</body>
+</html>
+
