@@ -3,117 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ᴄʀɪꜱᴛɪᴀɴ | ᴅᴇᴠᴇʟᴏᴘᴇʀ</title>
+    <title>ᴄʀɪꜱᴛɪᴀɴ | ᴘᴏʀᴛꜰᴏʟɪᴏ ᴇʟɪᴛᴇ</title>
     <style>
-        /* Estilo Base */
-        body { 
-            background-color: #050505; 
-            color: white; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0;
-            overflow: hidden;
+        :root {
+            --primary: #bc13fe; /* Morado Neón */
+            --secondary: #240046;
+            --accent: #00f2ff; /* Cian Neón */
+            --bg: #050505;
         }
 
-        /* Tarjeta con efecto Metálico */
-        .card { 
-            background: linear-gradient(145deg, #1a1a1a, #000); 
-            border: 2px solid #ff0000; 
-            box-shadow: 0 0 30px #660000; 
-            padding: 40px; 
-            border-radius: 20px; 
-            text-align: center; 
-            width: 85%; 
-            max-width: 400px;
-            position: relative;
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* Tipografía Small Caps */
-        h1 { 
-            color: #ff0000; 
-            letter-spacing: 4px; 
-            margin: 10px 0; 
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 5px #000;
+        /* --- SECCIÓN HERO (ENCABEZADO) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('42010.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid var(--primary);
         }
 
-        .tagline { 
-            color: #aaa; 
-            font-size: 14px; 
-            margin-bottom: 30px; 
+        .hero h1 {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 0 0 20px var(--primary);
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
         }
 
-        /* Botón de Música */
-        button { 
-            background: linear-gradient(to bottom, #990000, #ff0000); 
-            color: white; 
-            border: none; 
-            padding: 15px 40px; 
-            cursor: pointer; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            transition: 0.4s; 
-            font-size: 16px;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        /* --- REPRODUCTOR FLOTANTE --- */
+        .music-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid var(--primary);
+            z-index: 100;
+            box-shadow: 0 0 15px var(--primary);
         }
 
-        button:hover { 
-            transform: scale(1.05);
-            box-shadow: 0 0 20px #ff0000; 
+        /* --- SECCIONES --- */
+        section {
+            padding: 100px 20px;
+            max-width: 1000px;
+            margin: auto;
         }
 
-        /* Sección de Habilidades */
-        .skills { 
-            margin-top: 30px; 
-            border-top: 1px dashed #444; 
-            padding-top: 20px; 
-            font-size: 13px; 
-            color: #ff4d4d; 
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(188, 19, 254, 0.3);
+        }
+
+        .card h3 { color: var(--accent); margin-bottom: 15px; }
+
+        .btn-contact {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
             font-weight: bold;
-            letter-spacing: 1px;
+            box-shadow: 0 0 15px var(--primary);
         }
 
-        /* Animación de pulso para el borde */
-        @keyframes glow {
-            0% { box-shadow: 0 0 20px #660000; }
-            50% { box-shadow: 0 0 40px #ff0000; }
-            100% { box-shadow: 0 0 20px #660000; }
-        }
-        .card { animation: glow 3s infinite; }
+        footer { text-align: center; padding: 50px; color: #444; }
     </style>
 </head>
 <body>
-    <div class="card">
+
+    <div class="hero">
         <h1>ᴄʀɪꜱᴛɪᴀɴ</h1>
-        <p class="tagline">ᴍɪɴᴇᴄʀᴀꜰᴛ ɴᴇᴛᴡᴏʀᴋꜱ & ʙᴏᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ</p>
-        
+        <p>ɴᴇᴛᴡᴏʀᴋ ᴅᴇᴠᴇʟᴏᴘᴇʀ & ʙᴏᴛ ᴄᴏɴꜰɪɢᴜʀᴀᴛᴏʀ</p>
+        <a href="#about" class="btn-contact" style="margin-top: 50px;">ᴠᴇʀ ᴍᴀꜱ</a>
+    </div>
+
+    <div class="music-box">
         <audio id="myAudio" loop>
             <source src="Súbete y Ya Verás(MP3_160K).mp3" type="audio/mpeg">
         </audio>
-        
-        <button onclick="toggleAudio()" id="btn">ᴘʟᴀʏ ᴍᴜꜱɪᴄ</button>
-
-        <div class="skills">
-            ᴠᴇʟᴏᴄɪᴛʏ • ɢᴇʏꜱᴇʀ • ᴠᴘꜱ • ᴘʏᴛʜᴏɴ
-        </div>
+        <button onclick="toggleAudio()" id="btn" style="background:none; border:none; color:white; cursor:pointer; font-weight:bold;">ᴘʟᴀʏ ᴍᴜꜱɪᴄ</button>
     </div>
+
+    <section id="about">
+        <h2>ᴇxᴘᴇʀɪᴇɴᴄɪᴀ</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>ᴍɪɴᴇᴄʀᴀꜰᴛ ɴᴇᴛᴡᴏʀᴋꜱ</h3>
+                <p>Especialista en redes de alto rendimiento. Configuración de Velocity, Geyser para cross-play y optimización de servidores para asegurar 20 TPS constantes.</p>
+            </div>
+            <div class="card">
+                <h3>ᴅɪꜱᴄᴏʀᴅ ʙᴏᴛꜱ</h3>
+                <p>Desarrollo de bots avanzados con sistemas de tickets, embeds profesionales y automatización de comunidades en Discord.</p>
+            </div>
+            <div class="card">
+                <h3>ᴠᴘꜱ & ꜱʏꜱᴛᴇᴍꜱ</h3>
+                <p>Gestión de servidores Linux, transferencia de archivos vía SFTP y bases de datos para redes de gran escala.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 ᴄʀɪꜱᴛɪᴀɴ - ᴀʟʟ ʀɪɢʜᴛꜱ ʀᴇꜱᴇʀᴠᴇᴅ</p>
+    </footer>
 
     <script>
         var audio = document.getElementById("myAudio");
         var btn = document.getElementById("btn");
-
         function toggleAudio() {
             if (audio.paused) { 
                 audio.play(); 
-                btn.innerHTML = "ᴘᴀᴜꜱᴇ ᴍᴜꜱɪᴄ"; 
+                btn.innerHTML = "ᴘᴀᴜꜱᴇ"; 
             } else { 
                 audio.pause(); 
-                btn.innerHTML = "ᴘʟᴀʏ ᴍᴜꜱɪᴄ"; 
+                btn.innerHTML = "ᴘʟᴀʏ"; 
             }
         }
     </script>
